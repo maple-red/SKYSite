@@ -1,0 +1,36 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Backend
+backend/target/
+backend/*.class
+backend/data/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# 证书/私钥（绝不提交）
+frontend/certs/
+
+# Claude Code
+.claude/
+
+# 浏览器测试产物（playwright MCP）
+.playwright-mcp/
+
+# 部署包
+*.tar.gz
+
+# Logs
+*.log
