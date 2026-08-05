@@ -1,0 +1,42 @@
+# ===== 一键部署：docker compose up -d =====
+services:
+  # ---------- MySQL 数据库 ----------
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-<占位:数据库密码>}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-skyl1n_portal}
+      TZ: Asia/Shanghai
+    volumes:
+      - mysql-data:/var/lib/mysql   # 数据持久化，删容器不丢
+
+  # ---------- 后端 Spring Boot ----------
+  backend:
+    build: ./backend
+    restart: always                 # MySQL 没起来会自动重试，不用 healthcheck
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql             # 容器内用服务名访问
+      MYSQL_PORT: "3306"
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-skyl1n_portal}
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD:-<占位:数据库密码>}
+      TZ: Asia/Shanghai
+
+  # ---------- 前端 Vue + Nginx ----------
+  frontend:
+    build: ./frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./frontend/certs:/etc/nginx/ssl:ro
+
+# 命名卷
+volumes:
+  mysql-data:
