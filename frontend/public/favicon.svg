@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#111111"/>
+  <!-- T 形左眼（横眉 + 竖眼） -->
+  <path d="M17 24 v6 M13 20 h8" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <!-- T 形右眼 -->
+  <path d="M45 24 v6 M41 20 h8" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <!-- L 形微笑嘴 -->
+  <path d="M26 47 v-4 h14" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <circle cx="52" cy="12" r="4" fill="#ffffff"/>
+</svg>
